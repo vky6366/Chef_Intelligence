@@ -75,3 +75,25 @@ class TextProcessor:
         
         logger.info(f"Text chunked into {len(chunks)} pieces")
         return chunks
+    
+    def semantic_chunking(text, similarity_threshold=0.5):
+        sentences = text.split('.')
+        embeddings = model.encode(sentences)
+        
+        chunks = []
+        current_chunk = [sentences[0]]
+        
+        for i in range(1, len(sentences)):
+            # Calculate cosine similarity between consecutive sentences
+            similarity = np.dot(embeddings[i-1], embeddings[i]) / (
+                np.linalg.norm(embeddings[i-1]) * np.linalg.norm(embeddings[i])
+            )
+            
+            if similarity < similarity_threshold:
+                chunks.append('. '.join(current_chunk))
+                current_chunk = [sentences[i]]
+            else:
+                current_chunk.append(sentences[i])
+        
+        chunks.append('. '.join(current_chunk))
+        return chunks

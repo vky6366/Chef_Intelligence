@@ -2,10 +2,10 @@ import re
 import math
 from typing import List, Tuple
 from collections import Counter
-from app.utils.logger import setup_logger
+# from app.utils.logger import setup_logger
 from app.config import Config
 
-logger = setup_logger(__name__)
+# logger = setup_logger(__name__)
 
 class BM25Retriever:
     """
@@ -30,7 +30,7 @@ class BM25Retriever:
         self.idf = {}
         self.tokenized_docs = []
 
-        logger.info(f"BM25 Retriever initialized (k1={self.k1}, b={self.b})")
+        # logger.info(f"BM25 Retriever initialized (k1={self.k1}, b={self.b})")
 
     def tokenize(self, text: str) -> List[str]:
         """
@@ -53,7 +53,7 @@ class BM25Retriever:
         Args:
             documents: List of document strings
         """
-        logger.info(f"Indexing {len(documents)} documents...")
+        # logger.info(f"Indexing {len(documents)} documents...")
         
         self.documents = documents
         self.tokenized_docs = [self.tokenize(doc) for doc in documents]
@@ -73,7 +73,7 @@ class BM25Retriever:
         for token, freq in self.doc_freqs.items():
             self.idf[token] = math.log((num_docs - freq + 0.5) / (freq + 0.5) + 1.0)
         
-        logger.info(f"Indexing complete. Unique tokens: {len(self.idf)}")
+        # logger.info(f"Indexing complete. Unique tokens: {len(self.idf)}")
 
     def calculate_bm25_score(self, query_tokens: List[str], doc_idx: int) -> float:
         """
@@ -137,5 +137,5 @@ class BM25Retriever:
         # Return documents with scores
         results = [(self.documents[idx], score) for idx, score in top_results]
         
-        logger.debug(f"Retrieved {len(results)} documents for query: {query}")
+        # logger.debug(f"Retrieved {len(results)} documents for query: {query}")
         return results
