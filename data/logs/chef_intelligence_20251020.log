@@ -1,0 +1,41 @@
+2025-10-20 13:24:01,936 - app.utils.text_processor - INFO - Text Processor initialized (chunk_size=500, overlap=50)
+2025-10-20 13:24:01,981 - __main__ - WARNING - Recipe file not found: data/raw_recipes/recipes.txt. Creating an empty file.
+2025-10-20 13:24:01,983 - __main__ - INFO - Starting Chef Intelligence - Method 1
+2025-10-20 13:24:03,086 - app.utils.text_processor - INFO - Text Processor initialized (chunk_size=500, overlap=50)
+2025-10-20 13:24:03,150 - app.core.retriever - INFO - BM25 Retriever initialized (k1=1.5, b=0.75)
+2025-10-20 13:24:03,151 - app.utils.text_processor - INFO - Text chunked into 1 pieces
+2025-10-20 13:24:03,151 - app.core.retriever - INFO - Indexing 1 documents...
+2025-10-20 13:24:03,151 - app.core.retriever - INFO - Indexing complete. Unique tokens: 12
+2025-10-20 13:24:03,151 - app.routes.recipe_api - INFO - ✓ Indexed 1 recipe chunks
+2025-10-20 13:25:06,969 - app.routes.recipe_api - INFO - Processing query: Chicken Biryani Recipe
+2025-10-20 13:25:06,970 - app.routes.recipe_api - INFO - Initializing TinyLlama (first request)...
+2025-10-20 13:25:06,971 - app.core.llm_manager - INFO - Initializing TinyLlama Manager (model=TinyLlama/TinyLlama-1.1B-Chat-v1.0, device=cpu)
+2025-10-20 13:25:06,972 - app.core.llm_manager - INFO - Loading TinyLlama tokenizer...
+2025-10-20 13:25:10,050 - app.core.llm_manager - INFO - Loading TinyLlama model...
+2025-10-20 14:01:53,566 - app.core.llm_manager - INFO - ✓ TinyLlama model loaded successfully on cpu
+2025-10-20 14:10:46,528 - app.utils.text_processor - INFO - Text Processor initialized (chunk_size=500, overlap=50)
+2025-10-20 14:10:46,582 - __main__ - INFO - Starting Chef Intelligence - Method 1
+2025-10-20 14:10:47,723 - app.utils.text_processor - INFO - Text Processor initialized (chunk_size=500, overlap=50)
+2025-10-20 14:10:47,787 - app.core.retriever - INFO - BM25 Retriever initialized (k1=1.5, b=0.75)
+2025-10-20 14:10:47,787 - app.utils.text_processor - INFO - Text chunked into 1 pieces
+2025-10-20 14:10:47,788 - app.core.retriever - INFO - Indexing 1 documents...
+2025-10-20 14:10:47,788 - app.core.retriever - INFO - Indexing complete. Unique tokens: 12
+2025-10-20 14:10:47,788 - app.routes.recipe_api - INFO - ✓ Indexed 1 recipe chunks
+2025-10-20 14:12:02,851 - app.routes.recipe_api - INFO - Processing query: chicken biryani recipe
+2025-10-20 14:12:02,851 - app.routes.recipe_api - INFO - Initializing TinyLlama (first request) on Linux...
+2025-10-20 14:12:02,852 - app.core.llm_manager - INFO - Initializing TinyLlama Manager (model=TinyLlama/TinyLlama-1.1B-Chat-v1.0, device=cpu, OS=Linux)
+2025-10-20 14:12:02,852 - app.core.llm_manager - INFO - Loading TinyLlama tokenizer...
+2025-10-20 14:12:06,028 - app.core.llm_manager - INFO - Loading TinyLlama model...
+2025-10-20 14:14:18,514 - app.utils.text_processor - INFO - Text Processor initialized (chunk_size=500, overlap=50)
+2025-10-20 14:14:18,562 - __main__ - INFO - Starting Chef Intelligence - Method 1
+2025-10-20 14:14:19,662 - app.utils.text_processor - INFO - Text Processor initialized (chunk_size=500, overlap=50)
+2025-10-20 14:14:19,716 - app.core.retriever - INFO - BM25 Retriever initialized (k1=1.5, b=0.75)
+2025-10-20 14:14:19,716 - app.utils.text_processor - INFO - Text chunked into 1 pieces
+2025-10-20 14:14:19,719 - app.core.retriever - INFO - Indexing 1 documents...
+2025-10-20 14:14:19,719 - app.core.retriever - INFO - Indexing complete. Unique tokens: 12
+2025-10-20 14:14:19,720 - app.routes.recipe_api - INFO - ✓ Indexed 1 recipe chunks
+2025-10-20 14:15:26,132 - app.routes.recipe_api - INFO - Processing query: chicken biryani recipe
+2025-10-20 14:15:26,133 - app.routes.recipe_api - INFO - Initializing TinyLlama (first request) on Linux...
+2025-10-20 14:15:26,133 - app.core.llm_manager - INFO - Initializing TinyLlama Manager (model=TinyLlama/TinyLlama-1.1B-Chat-v1.0, device=cpu, OS=Linux)
+2025-10-20 14:15:26,134 - app.core.llm_manager - INFO - Loading TinyLlama tokenizer...
+2025-10-20 14:15:28,837 - app.core.llm_manager - INFO - Loading TinyLlama model...

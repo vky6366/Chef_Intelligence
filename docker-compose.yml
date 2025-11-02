@@ -1,0 +1,41 @@
+services:
+  chef-intelligence:
+    build: .
+    container_name: chef-intelligence
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mount application code for hot-reload
+      - ./app:/app/app
+      - ./scripts:/app/scripts
+      - ./templates:/app/templates
+      - ./requirements.txt:/app/requirements.txt
+      # Persist model cache (prevents re-downloading on container restart)
+      - ./models/cache:/app/models/cache
+      # Persist data directories
+      - ./data:/app/data
+    environment:
+      - PYTHONUNBUFFERED=1
+      - TRANSFORMERS_CACHE=/app/models/cache
+      - HF_HOME=/app/models/cache
+      - TRANSFORMERS_OFFLINE=0
+      # Pass through .env variables
+      - TINY_LLAMA_API_KEY=${TINY_LLAMA_API_KEY}
+      - LLM_MODEL_NAME=${LLM_MODEL_NAME:-TinyLlama/TinyLlama-1.1B-Chat-v1.0}
+      - USE_GPU=${USE_GPU:-false}
+      - LLM_MAX_NEW_TOKENS=${LLM_MAX_NEW_TOKENS:-512}
+      - LLM_TEMPERATURE=${LLM_TEMPERATURE:-0.7}
+      - DEBUG=${DEBUG:-true}
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 120s
+    # Increase shared memory for large models
+    shm_size: '2gb'
+
+volumes:
+  model_cache:
+    driver: local

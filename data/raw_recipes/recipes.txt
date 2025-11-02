@@ -1,0 +1,2 @@
+# Chef Intelligence Recipe Database
+# Add your recipes here in plain text format.

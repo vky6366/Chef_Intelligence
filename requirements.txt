@@ -1,0 +1,21 @@
+# Chef Intelligence - Method 1 (TinyLlama Implementation)
+# Direct RAG with Keyword Search + TinyLlama
+
+fastapi==0.104.1
+uvicorn==0.24.0
+pydantic==2.5.0
+python-dotenv==1.0.0
+
+# Hugging Face Transformers for TinyLlama
+transformers==4.36.0
+torch==2.0.0
+accelerate==0.25.0
+sentencepiece==0.1.99
+numpy>=1.25.0
+
+# Optional: For quantization (reduce memory usage)
+bitsandbytes==0.41.3
+
+# Testing
+pytest==7.4.3
+

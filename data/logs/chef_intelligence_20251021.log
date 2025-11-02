@@ -1,0 +1,43 @@
+2025-10-21 11:58:55,078 - app.utils.text_processor - INFO - Text Processor initialized (chunk_size=500, overlap=50)
+2025-10-21 11:58:55,082 - app.core.retriever - INFO - BM25 Retriever initialized (k1=1.5, b=0.75)
+2025-10-21 11:58:55,083 - app.utils.text_processor - INFO - Text chunked into 1 pieces
+2025-10-21 11:58:55,083 - app.core.retriever - INFO - Indexing 1 documents...
+2025-10-21 11:58:55,083 - app.core.retriever - INFO - Indexing complete. Unique tokens: 12
+2025-10-21 11:58:55,083 - app.routes.recipe_api - INFO - ✓ Indexed 1 recipe chunks
+2025-10-21 12:01:10,807 - app.routes.recipe_api - INFO - Initializing TinyLlama (first request) on Linux...
+2025-10-21 12:01:10,808 - app.core.llm_manager - INFO - Initializing TinyLlama Manager (model=TinyLlama/TinyLlama-1.1B-Chat-v1.0, device=cpu, OS=Linux)
+2025-10-21 12:01:10,809 - app.core.llm_manager - INFO - Loading TinyLlama tokenizer...
+2025-10-21 12:01:14,159 - app.core.llm_manager - INFO - Loading TinyLlama model...
+2025-10-21 12:02:42,207 - app.utils.text_processor - INFO - Text Processor initialized (chunk_size=500, overlap=50)
+2025-10-21 12:02:42,252 - app.core.retriever - INFO - BM25 Retriever initialized (k1=1.5, b=0.75)
+2025-10-21 12:02:42,253 - app.utils.text_processor - INFO - Text chunked into 1 pieces
+2025-10-21 12:02:42,253 - app.core.retriever - INFO - Indexing 1 documents...
+2025-10-21 12:02:42,253 - app.core.retriever - INFO - Indexing complete. Unique tokens: 12
+2025-10-21 12:02:42,253 - app.routes.recipe_api - INFO - ✓ Indexed 1 recipe chunks
+2025-10-21 12:03:47,286 - app.routes.recipe_api - INFO - Processing query: chicken biryani recipe
+2025-10-21 12:03:47,287 - app.routes.recipe_api - INFO - Initializing TinyLlama (first request) on Linux...
+2025-10-21 12:03:47,287 - app.core.llm_manager - INFO - Initializing TinyLlama Manager (model=TinyLlama/TinyLlama-1.1B-Chat-v1.0, device=cpu, OS=Linux)
+2025-10-21 12:03:47,288 - app.core.llm_manager - INFO - Loading TinyLlama tokenizer...
+2025-10-21 12:03:47,594 - app.core.llm_manager - INFO - Loading TinyLlama model...
+2025-10-21 12:09:51,120 - app.core.llm_manager - INFO - ✓ TinyLlama model loaded successfully on cpu
+2025-10-21 12:33:35,181 - app.utils.text_processor - INFO - Text Processor initialized (chunk_size=500, overlap=50)
+2025-10-21 12:33:35,185 - app.core.retriever - INFO - BM25 Retriever initialized (k1=1.5, b=0.75)
+2025-10-21 12:33:35,186 - app.utils.text_processor - INFO - Text chunked into 1 pieces
+2025-10-21 12:33:35,186 - app.core.retriever - INFO - Indexing 1 documents...
+2025-10-21 12:33:35,186 - app.core.retriever - INFO - Indexing complete. Unique tokens: 12
+2025-10-21 12:33:35,186 - app.routes.recipe_api - INFO - ✓ Indexed 1 recipe chunks
+2025-10-21 12:51:32,998 - app.utils.text_processor - INFO - Text Processor initialized (chunk_size=500, overlap=50)
+2025-10-21 12:51:33,002 - app.core.retriever - INFO - BM25 Retriever initialized (k1=1.5, b=0.75)
+2025-10-21 12:51:33,003 - app.utils.text_processor - INFO - Text chunked into 1 pieces
+2025-10-21 12:51:33,003 - app.core.retriever - INFO - Indexing 1 documents...
+2025-10-21 12:51:33,003 - app.core.retriever - INFO - Indexing complete. Unique tokens: 12
+2025-10-21 12:51:33,003 - app.routes.recipe_api - INFO - ✓ Indexed 1 recipe chunks
+2025-10-21 12:52:18,928 - app.routes.recipe_api - INFO - Processing query: chicken biryani recipe
+2025-10-21 12:52:18,928 - app.routes.recipe_api - INFO - Initializing TinyLlama (first request) on Linux...
+2025-10-21 12:52:18,929 - app.core.llm_manager - INFO - Initializing TinyLlama Manager (model=TinyLlama/TinyLlama-1.1B-Chat-v1.0, device=cpu, OS=Linux)
+2025-10-21 12:52:18,929 - app.core.llm_manager - INFO - Loading TinyLlama tokenizer...
+2025-10-21 12:52:19,248 - app.core.llm_manager - INFO - Loading TinyLlama model...
+2025-10-21 12:52:25,244 - app.core.llm_manager - INFO - ✓ TinyLlama model loaded successfully on cpu
+2025-10-21 12:59:58,079 - app.core.llm_manager - INFO - TinyLlama response generated successfully
+2025-10-21 13:07:59,146 - app.routes.recipe_api - INFO - Processing query: chicken biryani recipe
+2025-10-21 13:25:39,902 - app.core.llm_manager - INFO - TinyLlama response generated successfully
