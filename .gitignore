@@ -62,3 +62,6 @@ cache/
 models/
 tree.txt
 extracted_medical_report/
+extracted_report/
+app/tree_output.txt
+New Text Document.txt

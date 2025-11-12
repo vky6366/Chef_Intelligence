@@ -65,12 +65,7 @@ class TextProcessor:
                 start = 0
         return [c for c in chunks if c]
 
-    def semantic_chunking(
-        self,
-        text: str,
-        encoder_fn: Callable[[List[str]], "np.ndarray"],
-        similarity_threshold: float = 0.65,
-    ) -> List[str]:
+    def semantic_chunking(self, text: str, encoder_fn: Callable[[List[str]], "np.ndarray"], similarity_threshold: float = 0.65, ) -> List[str]:
         """
         Chunk text using sentence-level semantic similarity.
 

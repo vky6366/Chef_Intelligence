@@ -6,6 +6,7 @@ from typing import List
 from app.config import Config
 from app.utils.logger import setup_logger
 from app.utils.prompt_builder import PromptBuilder
+from openai import OpenAI
 
 logger = setup_logger(__name__)
 
@@ -141,6 +142,60 @@ class TinyLlamaManager:
         if torch.cuda.is_available() or self.device == "mps":
             torch.cuda.empty_cache()
         logger.info("TinyLlama model cleaned up from memory")
+
+class OpenAIManager:
+    """
+    OpenAI Manager for GPT-based models (default: gpt-4o-mini).
+    Fully cross-platform, uses API key from Config.
+    """
+
+    def __init__(self):
+        """Initialize OpenAI Manager"""
+        self.model_name = getattr(Config, "OPENAI_MODEL_NAME", "gpt-4o-mini")
+        self.api_key = os.getenv("OPENAI_API_KEY", getattr(Config, "OPENAI_API_KEY", None))
+        self.prompt_builder = PromptBuilder()
+
+        if not self.api_key:
+            raise ValueError("❌ OPENAI_API_KEY not found. Set it in environment variables or Config.")
+
+        # Initialize OpenAI client
+        self.client = OpenAI(api_key=self.api_key)
+
+        # Load generation config
+        self.max_tokens = getattr(Config, "OPENAI_MAX_TOKENS", 512)
+        self.temperature = getattr(Config, "OPENAI_TEMPERATURE", 0.7)
+        self.top_p = getattr(Config, "OPENAI_TOP_P", 1.0)
+
+        logger.info(f"Initializing OpenAI Manager (model={self.model_name}, OS={platform.system()})")
+
+    def _format_chat_prompt(self, system_prompt: str, user_prompt: str):
+        """Format prompt for GPT chat models"""
+        return [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt},
+        ]
+
+    def generate_response(self, query: str, context_chunks: List[str]) -> str:
+        """Generate response using GPT-4o-mini"""
+        try:
+            system_prompt, user_prompt = self.prompt_builder.build_base_prompt(query, context_chunks)
+            messages = self._format_chat_prompt(system_prompt, user_prompt)
+
+            response = self.client.chat.completions.create(
+                model=self.model_name,
+                messages=messages,
+                temperature=self.temperature,
+                top_p=self.top_p,
+                max_tokens=self.max_tokens,
+            )
+
+            answer = response.choices[0].message.content.strip()
+            logger.info("OpenAI GPT response generated successfully")
+            return answer
+
+        except Exception as e:
+            logger.error(f"Error generating OpenAI response: {str(e)}")
+            return f"Error generating response: {str(e)}"
 
 
 # Singleton instance

@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, HTTPException, status, UploadFile, File
 from pydantic import BaseModel
 from typing import List, Optional
 from app.core.retriever import BM25Retriever
@@ -9,12 +9,19 @@ from app.config import Config
 import os
 import torch
 import platform
-
+from pathlib import Path
+import shutil
+from fastapi.responses import JSONResponse
+from app.utils.document_segmentation import PDFExtraction
 router = APIRouter()
 logger = setup_logger(__name__)
 
 # Initialize components
 text_processor = TextProcessor()
+pdf_extractor = PDFExtraction()
+
+DATA_FOLDER = Path(__file__).parent / "data"
+DATA_FOLDER.mkdir(parents=True, exist_ok=True)
 
 # Retriever will be initialized in startup (safer for Docker)
 retriever: BM25Retriever = None
@@ -41,7 +48,7 @@ async def startup_event():
             with open(Config.RAW_RECIPES_PATH, 'r', encoding='utf-8') as f:
                 content = f.read()
             
-            chunks = text_processor.chunk_text(content)
+            chunks = text_processor.semantic_chunking(content)
             if chunks:
                 retriever.index_documents(chunks)
                 logger.info(f"✓ Indexed {len(chunks)} recipe chunks")
@@ -150,3 +157,43 @@ async def get_model_info():
         "status": "loaded",
         "os": platform.system()
     }
+
+@router.post("/upload-file")
+async def upload_file(file: UploadFile = File(...)):
+    """
+    Accepts a file (PDF, Excel, etc.), saves it to 'data' folder,
+    and processes it if it's a PDF.
+    """
+    try:
+        # Save uploaded file
+        file_path = DATA_FOLDER / file.filename
+        with open(file_path, "wb") as buffer:
+            shutil.copyfileobj(file.file, buffer)
+
+        # Check file type
+        ext = file.filename.lower().split(".")[-1]
+
+        if ext == "pdf":
+            # Run PDF extraction function
+            extracted_text = pdf_extractor.extract_pdf(str(file_path))
+            return JSONResponse(content={
+                "message": "File uploaded and processed successfully",
+                "file_path": str(file_path),
+                "result": extracted_text
+            })
+
+        elif ext in ["xls", "xlsx"]:
+            # You can add Excel parsing here if needed
+            return JSONResponse(content={
+                "message": "Excel file uploaded successfully",
+                "file_path": str(file_path)
+            })
+
+        else:
+            return JSONResponse(content={
+                "message": f"File '{file.filename}' uploaded but not processed (unsupported type)",
+                "file_path": str(file_path)
+            })
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))

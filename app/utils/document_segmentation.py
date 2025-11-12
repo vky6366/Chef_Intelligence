@@ -88,8 +88,8 @@ class PDFExtraction:
         return text 
 
 if __name__ == "__main__":
-    pdf_file = r"C:\Users\vishw\Downloads\letter.pdf"   # replace with user file
-    outdir = "extracted_medical_report"
+    pdf_file = r"C:\Users\vishw\Downloads\10Q-Q2-2025-as-filed.pdf"   # replace with user file
+    outdir = "extracted_report"
     ext = PDFExtraction()
     res = ext.extract_pdf(pdf_file, outdir)
     print(res)
